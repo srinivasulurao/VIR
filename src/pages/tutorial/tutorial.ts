@@ -15,39 +15,34 @@ export interface Slide {
   templateUrl: 'tutorial.html'
 })
 export class TutorialPage {
-  slides: Slide[];
+
   showSkip = true;
   dir: string = 'ltr';
+  image:any;
+
+  slides:any = [
+    {
+      description: 'Online marketplace with special cash back offers for serving and retried defence personnel.',
+      image: 'assets/img/banner1.jpg',
+    },
+    {
+      description: 'Skill development and vocational traning with relavant traing with relevant job oppurchunites.',
+      image: 'assets/img/banner4.jpg',
+    },
+    {
+      description: 'Legal banking & Insurance solutions.',
+      image: 'assets/img/banner3.jpg',
+    },
+    {
+      description: 'Entrepreneurial central and resources',
+      image: 'assets/img/banner.jpg',
+    }
+  ];
 
   constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
     this.dir = platform.dir();
-    translate.get(["TUTORIAL_SLIDE1_TITLE",
-      "TUTORIAL_SLIDE1_DESCRIPTION",
-      "TUTORIAL_SLIDE2_TITLE",
-      "TUTORIAL_SLIDE2_DESCRIPTION",
-      "TUTORIAL_SLIDE3_TITLE",
-      "TUTORIAL_SLIDE3_DESCRIPTION",
-    ]).subscribe(
-      (values) => {
-        console.log('Loaded values', values);
-        this.slides = [
-          {
-            title: values.TUTORIAL_SLIDE1_TITLE,
-            description: values.TUTORIAL_SLIDE1_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-1.png',
-          },
-          {
-            title: values.TUTORIAL_SLIDE2_TITLE,
-            description: values.TUTORIAL_SLIDE2_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-2.png',
-          },
-          {
-            title: values.TUTORIAL_SLIDE3_TITLE,
-            description: values.TUTORIAL_SLIDE3_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-3.png',
-          }
-        ];
-      });
+    this.image='assets/img/logo.png';
+
   }
 
   startApp() {
@@ -58,7 +53,7 @@ export class TutorialPage {
   }
 
   onSlideChangeStart(slider) {
-    this.showSkip = !slider.isEnd();
+    //this.showSkip = !slider.isEnd();
   }
 
   ionViewDidEnter() {

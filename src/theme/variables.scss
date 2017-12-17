@@ -29,9 +29,16 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222222,
+  white:      #ffffff,
+  vir:        #960000,
 );
-
+$font-size:(
+  big : 20px,
+  medium : 16px,
+  small : 14px,
+  tiny : 12px
+);
 
 // App iOS Variables
 // --------------------------------------------------

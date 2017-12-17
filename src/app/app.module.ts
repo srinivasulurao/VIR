@@ -8,12 +8,21 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http'; 
 
-import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
+
+import { OfflineCategoriesPage } from '../pages/offline-categories/offline-categories';
+import { OfflineProductDetailsPage } from '../pages/offline-product-details/offline-product-details';
+import { TabsPage } from '../pages/tabs/tabs';
+import { OfflinePage } from '../pages/offline/offline';
+import { OfflineProductsPage } from '../pages/offline-products/offline-products'; 
+
+//import { SignupTabPage } from '../pages/signup-tab/signup-tab';
+//import { LoginTabPage } from '../pages/login-tab/login-tab';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -38,12 +47,18 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    TabsPage,
+    OfflineProductDetailsPage,
+    OfflineCategoriesPage,
+    OfflineProductsPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    TranslateModule.forRoot({
+    BrowserModule,
+    HttpModule,
+    TranslateModule.forRoot({ 
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
@@ -55,11 +70,14 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TabsPage,
+    OfflineProductDetailsPage,
+    OfflineCategoriesPage,
+    OfflineProductsPage
   ],
   providers: [
     Api,
-    Items,
     User,
     Camera,
     SplashScreen,

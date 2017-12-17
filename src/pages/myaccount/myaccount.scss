@@ -1,0 +1,97 @@
+page-myaccount {
+  .profile-container {
+    width: 100%;
+    background-color: #FFFFFF;
+    background-size: cover;
+    background-position: left top;
+  }
+  .profile-info {
+    position: relative;
+  }
+
+  .profile-image {
+    display: block;
+    border-radius: 100px;
+    border: 1px solid #fff;
+    width: 128px;
+    height: 128px;
+    margin: 20px auto 20px auto;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
+  }
+
+  .profile-desc-class {
+    padding: 16px 0 16px 0;
+  }
+
+  .profile-desc-list {
+    clear: both;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .profile-icon-width {
+    width: 9%;
+    display: inline-block;
+  }
+
+  .profile-desc-content {
+    border-bottom: 1px solid #ccc;
+    width: 88%;
+    display: inline-block;
+    padding: 0 0 5px 0;
+  }
+
+  .profile-comment-textarea {
+    box-shadow: 0 0 1px 0;
+    width: 100%;
+    padding: 10px;
+    resize: none;
+    border-radius: 4px;
+  }
+
+  .profile-comment-textarea-button {
+    background: #18c4e5;
+    padding: 6px;
+    margin: 20px 0;
+    border-radius: 10px;
+    width: 55%;
+  }
+
+  .profile-no-image {
+    font-size: 115px;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .profile-class {
+    display: table;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .profile-name {
+    text-align: center;
+    font-size: 18px;
+    display: table-cell;
+    line-height: 24px;
+  }
+  .profile-details-content {
+    text-align: right;
+    font-size: 14px;
+  }
+  .profileUpdateClass{
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 0;
+  }
+  .member_details ion-label, .member_details ion-input{
+    font-size:14px !important;
+  }
+  .no-margin{
+    margin: 0 !important;
+  }
+}
+
+

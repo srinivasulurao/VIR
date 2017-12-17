@@ -1,0 +1,80 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-title start float-left><img [src]="image">  </ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+  <ion-segment [(ngModel)]="loginEvent" >
+    <ion-segment-button value="member">
+      VIR MEMBER
+    </ion-segment-button>
+    <ion-segment-button value="partner">
+      VIR PARTNER
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="loginEvent" >
+
+    <ion-list *ngSwitchCase="'member'">
+      <form>
+        <ion-list inset>
+          <div padding></div>
+          <ion-label stacked>Username</ion-label>
+          <ion-item>
+            <ion-input type="email" autofocus [(ngModel)]="member_email" class="no-margin"  name="email"  placeholder="Username"></ion-input>
+          </ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-item>
+            <ion-input type="password" [(ngModel)]="member_password" class="no-margin" name="password"  placeholder="Password"></ion-input>
+          </ion-item>
+          <div padding></div>
+          <div>
+            <ion-grid class="no-padding">
+              <ion-row>
+                <ion-col>
+                  <button ion-button block class="padding-20" color="vir" [disabled]="!member_email || !member_password" (click)="doLogin('member')">Log In</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+        </ion-list>
+      </form>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'partner'">
+      <form>
+        <ion-list inset>
+          <div padding></div>
+          <ion-label stacked>Username</ion-label>
+          <ion-item>
+            <ion-input type="email" autofocus [(ngModel)]="partner_email" class="no-margin"  name="email"  placeholder="Username"></ion-input>
+          </ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-item>
+            <ion-input type="password" [(ngModel)]="partner_password" class="no-margin" name="password"  placeholder="Password"></ion-input>
+          </ion-item>
+          <div padding></div>
+          <div>
+            <ion-grid class="no-padding">
+              <ion-row>
+                <ion-col>
+                  <button ion-button block class="padding-20" color="vir" [disabled]="!partner_email || !partner_password" (click)="doLogin('partner')">Log In</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+        </ion-list>
+      </form>
+    </ion-list>
+
+  </div>
+
+</ion-content>

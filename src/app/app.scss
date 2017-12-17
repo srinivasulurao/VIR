@@ -1,16 +1,65 @@
-// http://ionicframework.com/docs/v2/theming/
+.no-padding{
+  padding: 0;
+}
+.padding-20{
+  padding: 20px !important;
+}
+.toolbar-title img{
+  width: 110px;
+}
+.back-button{
+  color: #FFFFFF;
+}
+.no-margin{
+  margin: 0;
+}
+.tabs-md .tabbar{
+  background:#960000 !important; 
+}
 
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon{
+  color:red !important; 
+}
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+.tab-button-text,.tabs-md .tab-button-icon{
+  color:white !important;
+}
+
+.advertisements img{
+  width:100% !important;
+}
+.no-left-margin{
+  margin-left: 0;
+  width: 100%;
+}
+.oddCol{
+  padding-right: 5px;
+}
+.evenCol{
+  padding-left: 5px;
+}
+.card-header {
+  padding: 10px 5px 10px 5px;
+}
+.card-header h1 {
+  text-transform: uppercase;
+  color: map-get($colors, vir);;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.subject-background{
+  background-color: map-get($colors, white);
+}
+.card-title{
+  font-size: map-get($font-size, small);
+  line-height: 22px;
+}
+
+.product_details ion-label{
+  font-size:12px !important;
+  
+}
