@@ -18,7 +18,7 @@
 <ion-header>
 
   <ion-navbar color="vir">
-    <ion-title>Account Details</ion-title>
+    <ion-title>Account Details</ion-title> 
     <ion-buttons end float-right>
       <button ion-button icon-only color="template" menuToggle>
         <ion-icon name="settings"></ion-icon>
@@ -29,16 +29,16 @@
 </ion-header>
 
 
-<ion-content class="member_details">
+<ion-content class="member_details" *ngIf="role_id=='1'">
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <div class="profile-container">
     <div class="row logo-block">
       <div class="col col-center">
 
-        <div class="profile-info">
+        <div class="profile-info" *ngIf="account.profile_pic"> 
 
             <span class="profile-image" [ngStyle]="{'background-image': 'url(' + account.profile_pic + ')'}"
                   style="background-size: cover;background-position: center;position: relative">
@@ -126,8 +126,8 @@
 
               <div class="profile-desc-list">
                   <div class="profile-icon-width"><ion-icon name="flower" color="vir"></ion-icon></div>
-                  <div class="profile-desc-content" *ngIf="account.vircardno">
-                    {{account.vircardno}}
+                  <div class="profile-desc-content" *ngIf="account.csdno">
+                    {{account.csdno}} 
                   </div>
                   <div class="profile-desc-content" *ngIf="!account.dob"> 
                     Not Mentioned
@@ -181,5 +181,62 @@
 
   </div>
 
+
+</ion-content>
+
+
+<ion-content padding class="member_details" *ngIf="role_id!='1'">
+
+    <ion-card>
+      <img [src]="account.banner" />
+    </ion-card>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Partner Name</ion-label><ion-label text-wrap>{{account.partnername}}</ion-label>
+      </ion-item>
+
+
+     
+
+
+      <ion-item>
+          <ion-label>Contact Email</ion-label><ion-label text-wrap>{{account.contact_email}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Contact Person</ion-label><ion-label text-wrap>{{account.contact_person}}</ion-label>
+      </ion-item> 
+ 
+      <ion-item>
+          <ion-label>Contact Mobile</ion-label><ion-label text-wrap>{{account.contact_mobile}}</ion-label>
+      </ion-item> 
+
+      <ion-item>
+          <ion-label>Customer Care</ion-label><ion-label text-wrap>{{account.customer_care}}</ion-label>
+        </ion-item>
+
+      <ion-item>
+            <ion-label>Website</ion-label><ion-label text-wrap>{{account.website}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+              <ion-label>Proprietor</ion-label><ion-label text-wrap>{{account.proprietor}}</ion-label> 
+      </ion-item>
+
+      <ion-item>
+                <ion-label>City</ion-label><ion-label text-wrap>{{account.city}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>State</ion-label><ion-label text-wrap>{{account.state}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>Address</ion-label><ion-label text-wrap>{{account.address}}</ion-label>
+      </ion-item>
+
+
+    </ion-list>
 
 </ion-content>

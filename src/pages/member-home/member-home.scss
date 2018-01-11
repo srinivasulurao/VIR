@@ -7,6 +7,9 @@ page-member-home {
     width: 40% !important;
     display: inline-block;
   }
+  .advertisements ion-card{
+    width: 100% !important;
+  }
   .TabSpace{
     margin: 26px 0;
   }
@@ -25,7 +28,7 @@ page-member-home {
     overflow: hidden;
   }
   .video .card img{
-    max-height: 81px;
+    /*max-height: 81px;*/
   }
   .mdTitle{
     padding: 10px  0 0 0;

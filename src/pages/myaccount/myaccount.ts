@@ -5,6 +5,13 @@ import { FirstRunPage } from '../pages';
 import { VirWebService } from  '../../app/web-services/vir-webservice';  //This is the webservice.
 import { LoadingController} from "ionic-angular";
 import { AlertController} from 'ionic-angular';
+import { StaticContentPage } from '../static-content/static-content'; 
+
+import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy'; 
+import { InfringementPolicyPage } from '../infringement-policy/infringement-policy';
+import { MemberTermsOfUsePage } from '../member-terms-of-use/member-terms-of-use';
+import { PartnerTermsOfUsePage } from '../partner-terms-of-use/partner-terms-of-use';
+import { OrderHistoryPage } from '../order-history/order-history'; 
 
 /**
  * Generated class for the MyaccountPage page.
@@ -22,15 +29,18 @@ export class MyaccountPage {
 
   public account:any;
   showMenuPages: any[] = [
-    { title: 'About us', component: 'AboutUsPage' },
-    { title: 'Team', component: 'TeamPage'},
-    { title: "FAQ's", component: 'FaqPage'},
-    { title: 'Privacy Policy', component: 'PrivacyPolicyPage'},
-    { title: 'Logout', component: ''}
+    { title: 'Infringement Policy', component: InfringementPolicyPage},
+    { title: "Privacy Policy", component: PrivacyPolicyPage},
+    { title: 'Member Terms of Use', component: MemberTermsOfUsePage}, 
+    { title: 'Partner Terms of Use', component: PartnerTermsOfUsePage},
+    { title: 'Order History', component: OrderHistoryPage },    
+    { title: 'Logout', component: '' } 
   ]
+
   personImage:any;
   profileForm:FormGroup;
   changeProfile:boolean=false;
+  public role_id:any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -39,8 +49,10 @@ export class MyaccountPage {
               private platform: Platform,
               public app:App,public formBuilder: FormBuilder,
               public virWS:VirWebService, public alertCtrl: AlertController, public loader: LoadingController) {
+
     this.getAccountDetails();
     this.personImage ='assets/img/personImg.png';
+    
 
 
     this.profileForm = formBuilder.group({
@@ -50,8 +62,30 @@ export class MyaccountPage {
   }
 
   ionViewDidLoad() {
+    this.role_id=localStorage.getItem('roleid');
     console.log('ionViewDidLoad MyaccountPage');
 
+    if(this.role_id==2){
+        this.showMenuPages=[
+          { title: 'Infringement Policy', component: InfringementPolicyPage},
+          { title: "Privacy Policy", component: PrivacyPolicyPage},
+          { title: 'Member Terms of Use', component: MemberTermsOfUsePage}, 
+          { title: 'Partner Terms of Use', component: PartnerTermsOfUsePage},
+          { title: 'Logout', component: '' } 
+        ];
+    }
+
+  }
+
+  
+
+  openPage(page){
+    if(page.title=="Logout"){
+      this.presentActionSheet();   
+    }
+    else{
+     this.navCtrl.push(page.component,{page:page}); 
+    }
   }
 
   presentActionSheet(){
@@ -91,7 +125,7 @@ export class MyaccountPage {
     loaderCtrl.present();
 
     this.virWS.getUserDetails().subscribe(response=>{   
-          //console.log(response); 
+          console.log(response);  
           this.account=response.result[0];
 
           loaderCtrl.dismiss();

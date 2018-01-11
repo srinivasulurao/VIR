@@ -4,6 +4,9 @@ import { VirWebService } from  '../../app/web-services/vir-webservice';  //This 
 import { LoadingController} from "ionic-angular";
 import { AlertController } from 'ionic-angular';
 import { OfflineCategoriesPage } from '../offline-categories/offline-categories';  
+import { SearchFilterPage } from '../search-filter/search-filter';  
+
+
 /**
  * Generated class for the OfflineCategoriesPage page.
  *
@@ -23,7 +26,14 @@ export class OfflinePage {
   
     constructor(public navCtrl: NavController, public navParams: NavParams,  public virWS:VirWebService, public alertCtrl: AlertController, public loader: LoadingController) {
   
-      this.getOfflineStores();
+      
+      if(this.navParams.get('search_result')){   // This will load the data from search result.
+        var search_result=this.navParams.get('search_result'); 
+        this.offlineStores=search_result.result; 
+      } 
+      else{                                      // This will load the data from normal page open. 
+        this.getOfflineStores();
+      }
   
     }
   
@@ -49,11 +59,16 @@ export class OfflinePage {
       console.log('ionViewDidLoad OfflinePage');
     }
   
-    contentItemSelected(id,title){
+    contentItemSelected(id,title,storebanner,partnerlocation){
       this.navCtrl.push(OfflineCategoriesPage, {
         store_id: id,
-        store_name: title
+        store_name: title,
+        storebanner:storebanner
       });
+    }  
+
+    navigateSearchFilter(search_type){
+      this.navCtrl.push(SearchFilterPage,{search_type:search_type}); 
     }
 
 }

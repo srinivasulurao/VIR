@@ -22,27 +22,18 @@ export class TutorialPage {
 
   slides:any = [
     {
-      description: 'Online marketplace with special cash back offers for serving and retried defence personnel.',
+      description: 'Honouring Service & Sacrifice',
+      image: 'assets/img/tutor.png',
+    },
+    {
+      description: 'Serving the Armed Forces Community',
       image: 'assets/img/banner1.jpg',
-    },
-    {
-      description: 'Skill development and vocational traning with relavant traing with relevant job oppurchunites.',
-      image: 'assets/img/banner4.jpg',
-    },
-    {
-      description: 'Legal banking & Insurance solutions.',
-      image: 'assets/img/banner3.jpg',
-    },
-    {
-      description: 'Entrepreneurial central and resources',
-      image: 'assets/img/banner.jpg',
     }
   ];
 
   constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
     this.dir = platform.dir();
     this.image='assets/img/logo.png';
-
   }
 
   startApp() {

@@ -1,6 +1,28 @@
 page-offline-product-details {
 .thumnailClass{
-    width: 15%;
+    /*width: 15%;*/
     padding: 10px 0;
 }
+  .scroll-zoom-wrapper {
+    white-space: nowrap;
+  }
+
+  .video ion-card {
+    width: 15%;
+    display: inline-block;
+    background: transparent;
+    border: none;
+  }
+
+  .TabSpace{
+    margin: 26px 0;
+  }
+  ion-scroll {
+    min-height: 160px;
+    height: auto;
+
+    .scroll-content {
+      padding: 0px !important;
+    }
+  }
 }

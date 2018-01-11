@@ -26,7 +26,7 @@
 
         <h2 [innerHTML]="product.title|uppercase"></h2>
         <span style="font-size:12px;" [innerHTML]="product.description" ></span> <br>
-        <ion-badge style="cursor:pointer" color="light">Available at</ion-badge> | <ion-badge style="cursor:pointer" color="vir" (click)="navigateProductDetails(product)" >View</ion-badge>
+        <ion-badge style="cursor:pointer" color="success" (click)="navigateAvailableAt()">Available at</ion-badge> | <ion-badge style="cursor:pointer" color="vir" (click)="navigateProductDetails(product)" >View</ion-badge>
 </ion-item>
  
 </ion-list>  

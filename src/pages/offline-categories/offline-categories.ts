@@ -5,6 +5,8 @@ import { VirWebService } from  '../../app/web-services/vir-webservice';  //This 
 import { LoadingController} from "ionic-angular";
 import { AlertController} from 'ionic-angular';
 import { OfflineProductsPage } from '../offline-products/offline-products';
+import { AvailableatPage } from '../availableat/availableat'; 
+
 /**
  * Generated class for the OfflineCategoriesPage page.
  *
@@ -22,17 +24,20 @@ export class OfflineCategoriesPage {
    public store_id:any;
    public store_name:any;
    public store_categories:any; 
-
+   public store_banner:any;
+   public partner_location:any;
   
     constructor(public navCtrl: NavController, public navParams: NavParams,  public virWS:VirWebService, public alertCtrl: AlertController, public loader: LoadingController) {
   
       this.store_id=this.navParams.get('store_id');
       this.store_name=this.navParams.get('store_name'); 
-  
+      this.store_banner=this.navParams.get('storebanner');   
 
       this.fetchStoreCategories(this.store_id);
-  
+    
     }
+
+    
 
     fetchStoreCategories(store_id){
 
@@ -43,8 +48,6 @@ export class OfflineCategoriesPage {
         loaderCtrl.present();
         
         this.virWS.getCategoriesByStoreId(store_id).subscribe(response=>{ 
-    
-            console.log(response); 
 
             this.store_categories=response.result.offers;
           
@@ -54,9 +57,15 @@ export class OfflineCategoriesPage {
     }
 
 
-    navigateViewDetails(category_id){
+    navigateViewDetails(category_id,partnerlocation){
 
-      this.navCtrl.push(OfflineProductsPage,{category_id:category_id,store_id:this.store_id}); //Navigate and show the list of the products under that category.  
+      this.navCtrl.push(OfflineProductsPage,{partner_location:partnerlocation,category_id:category_id,store_id:this.store_id, store_name:this.store_name}); //Navigate and show the list of the products under that category.  
+
+    }
+
+    navigateAvailableAt(partnerlocation){
+
+      this.navCtrl.push(AvailableatPage,{locations:partnerlocation,store_name:this.store_name}); 
 
     }
     

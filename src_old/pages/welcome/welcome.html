@@ -1,0 +1,20 @@
+<ion-content scroll="false">
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <div class="splash-logo"></div>
+  </div>
+  <div padding>
+  </div>
+  <div>
+    <ion-grid class="no-padding gridClass">
+      <ion-row>
+        <ion-col>
+          <button ion-button block class="padding-20" color="vir"  (click)="login()">{{ 'LOGIN' | translate }}</button>
+        </ion-col>
+        <ion-col >
+          <button ion-button block  class="padding-20" color="white"  (click)="signup()">{{ 'SIGNUP' | translate }}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

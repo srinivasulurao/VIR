@@ -1,0 +1,45 @@
+<!--
+  Generated template for the OfflineCategoriesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="vir">
+    <ion-title>{{store_name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- <ion-item class='offline_products' *ngFor="let op of offlineProducts">
+    <img [src]="op.image">
+  </ion-item> -->
+
+  <ion-grid class="no-padding" >
+      <ion-row>
+        <ion-col col-12 class="no-padding" *ngFor="let op of store_categories; let i=index"  [ngClass]="(i%2==0)?'oddCol':'evenCol'" >
+          <ion-card class="no-left-margin" padding  style="background:#f5f5f5" >  
+            <ion-card-content class="no-padding no-margin subject-background">
+              
+              <div class="card-content-outer" post-content="" >
+                <div class="card-content" style="background:#f5f5f5">
+                   <h2 [innerHTML]="op.title" style="color:#960000"></h2> 
+                   <div [innerHTML]="op.description"></div>
+                   <strong>Terms and Conditions</strong>
+                   <div><ion-icon name="checkmark"></ion-icon> Not Applicable</div>
+                   <button ion-button color="light" (click)="navigateAvailableAt(op.partnerlocation)"> Available at</button> <button (click)="navigateViewDetails(op.categoryid)" ion-button color="vir">View Details</button>
+                </div>
+              </div>
+              
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>
+

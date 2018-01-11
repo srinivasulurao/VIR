@@ -7,9 +7,14 @@
 <ion-header>
 
   <ion-navbar color="vir" >
-    <ion-title>HOME</ion-title>
-  </ion-navbar>
+    <ion-title>VIR</ion-title>
 
+    <ion-buttons end>
+        <button (click)="navigateHelp()" ion-button icon-only><ion-icon name="help-circle"></ion-icon></button> 
+    </ion-buttons>
+    
+  </ion-navbar>
+  
 </ion-header>
 
 <ion-content>
@@ -36,40 +41,46 @@
   </ion-toolbar>
   </div>-->
   <div padding>
-    <div class="advertisements">
-      <div *ngFor="let advertOnline of advertisersOnline">
-        <img [src]="advertOnline">
-      </div>
+    <div class="video advertisements">
+      <ion-scroll scrollX="true" direction="x">
+        <ion-card  *ngFor="let advertOnline of advertisersOnline;let l = index" [ngClass]="getIndex(l)" >
+          <img [src]="advertOnline.image"/>
+        </ion-card>
+      </ion-scroll>
     </div>
 
     <div class="video">
         <h5 class="mdTitle">Offline</h5>
         <ion-scroll scrollX="true" direction="x">
-          <ion-card  *ngFor="let offline of offlineStores;let i = index" [ngClass]="getIndex(i)" (click)="offlineSelected(offline.partnerid)">
+          <ion-card  *ngFor="let offline of offlineStores;let i = index" [ngClass]="getIndex(i)" (click)="offlineSelected(offline.partnerid,offline.storename)">
             <img [src]="offline.storebanner"/>
             <ion-card-content class="no-padding">
               <ion-card-title>
                 {{ offline.storename }}
+             <!--  <div *ngIf="offline.storeoffer[0]" style='font-size:12px'>{{offline.storeoffer[0].fromdate | date : "dd MMM" }} - {{offline.storeoffer[0].todate | date : "dd MMM"}}</div> -->
               </ion-card-title>
             </ion-card-content>
           </ion-card>
         </ion-scroll>
     </div>
 
-    <div class="advertisements">
-      <div *ngFor="let advertOffline of advertisersOffline">
-        <img [src]="advertOffline">
-      </div>
+    <div class="video advertisements">
+      <ion-scroll scrollX="true" direction="x">
+        <ion-card  *ngFor="let advertOffline of advertisersOffline;let l = index" [ngClass]="getIndex(l)" >
+          <img [src]="advertOffline.image"/>
+        </ion-card>
+      </ion-scroll>
     </div>
 
     <div class="video">
-      <h5 class="mdTitle">Online</h5> 
+      <h5 class="mdTitle">Online</h5>
       <ion-scroll scrollX="true" direction="x">
         <ion-card  *ngFor="let online of onlineStores;let l = index" [ngClass]="getIndex(l)" (click)="onlineSelected(online.partnerid)">
           <img [src]="online.storebanner"/>
-          <ion-card-content class="no-padding"> 
+          <ion-card-content class="no-padding">
             <ion-card-title>
               {{ online.storename }}
+             <!-- <div *ngIf="online.storeoffer[0]" style='font-size:12px'>{{online.storeoffer[0].fromdate | date : "dd  MMM" }} - {{online.storeoffer[0].todate | date : "dd MMM"}}</div> -->
             </ion-card-title>
           </ion-card-content>
         </ion-card>

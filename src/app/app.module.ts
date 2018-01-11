@@ -4,11 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { HttpModule } from '@angular/http'; 
+import { HttpModule } from '@angular/http';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
@@ -19,7 +22,21 @@ import { OfflineCategoriesPage } from '../pages/offline-categories/offline-categ
 import { OfflineProductDetailsPage } from '../pages/offline-product-details/offline-product-details';
 import { TabsPage } from '../pages/tabs/tabs';
 import { OfflinePage } from '../pages/offline/offline';
-import { OfflineProductsPage } from '../pages/offline-products/offline-products'; 
+import { OfflineProductsPage } from '../pages/offline-products/offline-products';
+import { VendorTabPage } from '../pages/vendor-tab/vendor-tab';
+import { StaticContentPage } from '../pages/static-content/static-content';
+import { AvailableatPage } from '../pages/availableat/availableat'; 
+import { GoogleMapPage } from '../pages/google-map/google-map';
+import { OnlineBuyPage } from '../pages/online-buy/online-buy'; 
+import { HowItWorksPage } from '../pages/how-it-works/how-it-works'; 
+import { SearchFilterPage } from '../pages/search-filter/search-filter'; 
+
+import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy'; 
+import { InfringementPolicyPage } from '../pages/infringement-policy/infringement-policy';
+import { MemberTermsOfUsePage } from '../pages/member-terms-of-use/member-terms-of-use';
+import { PartnerTermsOfUsePage } from '../pages/partner-terms-of-use/partner-terms-of-use'; 
+import { OrderHistoryPage } from '../pages/order-history/order-history'; 
+
 
 //import { SignupTabPage } from '../pages/signup-tab/signup-tab';
 //import { LoginTabPage } from '../pages/login-tab/login-tab';
@@ -51,14 +68,27 @@ export function provideSettings(storage: Storage) {
     TabsPage,
     OfflineProductDetailsPage,
     OfflineCategoriesPage,
-    OfflineProductsPage
+    OfflineProductsPage,
+    VendorTabPage,
+    StaticContentPage,
+    AvailableatPage,
+    GoogleMapPage,
+    OnlineBuyPage,
+    HowItWorksPage,
+    SearchFilterPage,
+    PrivacyPolicyPage,
+    InfringementPolicyPage,
+    MemberTermsOfUsePage,
+    PartnerTermsOfUsePage,
+    OrderHistoryPage
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserModule,
     HttpModule,
-    TranslateModule.forRoot({ 
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
@@ -69,19 +99,34 @@ export function provideSettings(storage: Storage) {
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
-  entryComponents: [
+  entryComponents: [ 
     MyApp,
     TabsPage,
     OfflineProductDetailsPage,
     OfflineCategoriesPage,
-    OfflineProductsPage
+    OfflineProductsPage,
+    VendorTabPage,
+    StaticContentPage,
+    AvailableatPage,
+    GoogleMapPage,
+    OnlineBuyPage,
+    HowItWorksPage,
+    SearchFilterPage,
+    PrivacyPolicyPage,
+    InfringementPolicyPage,
+    MemberTermsOfUsePage,
+    PartnerTermsOfUsePage,
+    OrderHistoryPage
   ],
   providers: [
     Api,
     User,
     Camera,
     SplashScreen,
+    Geolocation,
     StatusBar,
+    BarcodeScanner,
+    InAppBrowser,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
