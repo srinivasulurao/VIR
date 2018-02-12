@@ -1,0 +1,50 @@
+<!--
+  Generated template for the OrderHistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="vir" >
+    <ion-title>Order History</ion-title> 
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    
+<ion-list>
+    <ion-item *ngFor="let oh of order_history" detail-push >
+        <ion-avatar item-left *ngIf="oh.mainimage">
+          <img src="{{prod_img_base_url}}{{oh.mainimage}}" >
+        </ion-avatar>
+
+        <ion-avatar item-left *ngIf="!oh.mainimage">
+            <img src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" >
+        </ion-avatar>
+
+        <h2 [innerHTML]="oh.title|uppercase"></h2> 
+        <span style="font-size:12px;" [innerHTML]="oh.company_name" ></span>, <span style="font-size:12px;" [innerHTML]="oh.head_city" ></span><br>
+        <span style="cursor:pointer;font-size:12px"><b>Order Date :</b> {{oh.orderdate | date : "dd  MMM yyyy" }} </span> <br>
+        <span style="cursor:pointer;font-size:12px"><b>Order Status : </b>
+        <ion-badge *ngIf="oh.status=='1'" color="secondary">Booked</ion-badge> 
+        <ion-badge *ngIf="oh.status=='2'" color="primary">Purchased</ion-badge> 
+        <ion-badge *ngIf="oh.status=='3'" color="danger">Expired</ion-badge> 
+
+        </span>  
+    </ion-item>
+
+
+    <ion-item *ngIf="!order_history" detail-push >
+        <ion-label color="vir">No Order History found !</ion-label>
+    </ion-item>
+
+</ion-list>
+
+</ion-content>

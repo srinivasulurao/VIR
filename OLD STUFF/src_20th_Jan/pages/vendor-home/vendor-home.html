@@ -1,0 +1,108 @@
+<!--
+  Generated template for the VendorHomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="vir">
+    <ion-title>VIR</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class='member_details'>
+  <!-- <ion-slides pager="true" style="height:200px !important" >
+    <ion-slide *ngFor="let slide of carouselImage">
+      <img [src]="slide">
+    </ion-slide>
+  </ion-slides> -->
+
+
+  <ion-segment [(ngModel)]="search_vir_by" color="vir">
+    <ion-segment-button value="scanner">By VIR Card</ion-segment-button>
+    <ion-segment-button value="virid">By VIR ID</ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="search_vir_by">
+
+    <div padding class="scan" *ngSwitchCase="'scanner'">
+
+      <ion-col col-12>
+        <h4>Search by QR Code</h4>
+      </ion-col>
+
+      <button ion-button block color="secondary" class="Scan-button" (click)="scanQR()"
+              [disabled]="loading">{{buttonText}}
+      </button>
+    </div>
+
+    <div padding class="scan" *ngSwitchCase="'virid'">
+
+      <ion-col col-12>
+        <h4>Search by VIR ID</h4>
+      </ion-col>
+
+      <ion-input type="text" style='border:1px solid lightgrey !important' autofocus
+                 [(ngModel)]="vir_card_id" class="no-margin" name="vir_card_id"
+                 placeholder="Enter Vir Card Number"></ion-input>
+      <br>
+      <button ion-button block color="secondary" class="Scan-button" (click)="searchByVirId()"
+              [disabled]="loading_vid">{{buttonText2}}
+      </button>
+    </div>
+
+    <!-- Result to be shown here -->
+    <div *ngIf="result" class='result_playground profile-container'>
+<div class='genuine_card_background' >This is a genuine card !</div>
+      <div class="list">
+        <div class="card item no-padding">
+          <div text-center text>
+            <img src="http://virindia.com/dev/assets/images/picture/{{result.picture}}"
+                 style='border:1px solid lightgrey;padding:3px;border-radius:4px'>
+          </div>
+          <div class="item text-uppercase">
+            <strong>Personal Details</strong>
+          </div>
+
+          <div class="profile-desc-class">
+            
+            <ion-list>
+              <ion-item>
+                <ion-label> Full Name</ion-label><ion-label><ion-icon name="person" color="vir"></ion-icon> {{result.full_name}}</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>  Date of Birth</ion-label><ion-label> <ion-icon name="calendar" color="vir"></ion-icon> {{result.dob}}</ion-label>
+              </ion-item>
+            </ion-list>
+
+            <div class="card profile-desc-class">
+
+              <strong><ion-icon name="card" color="vir"></ion-icon> <span class="rightSpaceClass">Vir Membership Card</span></strong>
+
+
+              <div class="profile-desc-list">
+                <div class='vir_card'>
+                <div style='width:65%;display:inline-block;vertical-align:top;'><img src='./assets/img/logo.png'></div><div style="text-align:right; width:35%;display:inline-block"><img style='height:100px;width:100px' src="http://virindia.com/dev/assets/images/picture/{{result.picture}}" ></div>
+                <div>{{result.regno}}</div>
+                <div>{{result.full_name}}</div> 
+                <div>Valid Till : {{result.validity | date : "dd / MM / yyyy" }}</div>
+               </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- Result Playground ends here-->
+
+    <ion-label color="vir" *ngIf="!result">No card result found !</ion-label>
+
+  </div>
+
+</ion-content>

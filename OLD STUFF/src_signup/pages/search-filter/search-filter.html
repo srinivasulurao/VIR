@@ -1,0 +1,48 @@
+<!--
+  Generated template for the SearchFilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="vir" >
+    <ion-title>Search Here</ion-title> 
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content></ion-refresher-content>
+            </ion-refresher>
+<ion-list>
+    <ion-item style='border-bottom:1px solid lightgrey !important'>
+        <ion-select [(ngModel)]="category_val" placeholder="Select Category" style='width:100%;max-width:100%'>
+            <ion-option *ngFor="let cl of categoryList" value="{{cl.category}}" >{{cl.category}}</ion-option>
+        </ion-select>
+    </ion-item>
+</ion-list>
+
+<ion-list style='border-bottom:1px solid lightgrey !important'>
+    <ion-item>
+        <ion-select [(ngModel)]="sub_category_val" placeholder="Select Sub-category" style='width:100%;max-width:100%'>
+            <ion-option *ngFor="let scl of subCategoryList" value="{{scl.subcategory}}" >{{scl.subcategory}}</ion-option> 
+        </ion-select>
+    </ion-item>
+</ion-list>
+
+<ion-list>
+    <ion-item>
+        <ion-input type="text" [(ngModel)]="location" placeholder="Location, Store Name ..."></ion-input>
+    </ion-item>
+</ion-list>
+
+<div center text-center>
+
+    <button ion-button full color="vir" (click)="filterStoreList()" >Search</button>
+</div>
+
+
+</ion-content>

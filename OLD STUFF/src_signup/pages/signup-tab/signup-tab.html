@@ -1,0 +1,553 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-title start float-left><img [src]="image"></ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+  <ion-segment [(ngModel)]="loginEvent" class="margin-20">
+    <ion-segment-button value="member">
+      VIR MEMBER
+    </ion-segment-button>
+    <ion-segment-button value="partner">
+      VIR PARTNER
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="loginEvent" >
+
+    <ion-list *ngSwitchCase="'member'">
+      <form [formGroup]="signUpMemberForm">
+        <ion-list inset>
+
+          <h3>PERSONAL DETAILS</h3>
+
+          <ion-label stacked>Full Name</ion-label>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="memberAccount.full_name" formControlName="full_name" class="no-margin"  name="full_name"   placeholder="Full Name"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Mobile No</ion-label>
+          <ion-item>
+            <ion-label >+91</ion-label>
+            <ion-input type="text" [(ngModel)]="memberAccount.mobile" formControlName="mobile" class="no-margin" name="mobile"   placeholder="1234567890"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Email Id</ion-label>
+          <ion-item>
+            <ion-input type="email"  [(ngModel)]="memberAccount.email" formControlName="email" class="no-margin"  name="email"  placeholder="Email Id"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>DOB</ion-label>
+          <ion-item>
+            <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob" class="no-margin no-padding"  name="dob" placeholder="DOB"></ion-datetime>-->
+            <ion-input type="text" [(ngModel)]="memberAccount.dob" formControlName="dob" class="no-margin" name="dob"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>City / Village / Town</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="memberAccount.city" formControlName="city" class="no-margin" name="city"  placeholder="City"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>State</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="memberAccount.state" formControlName="state" class="no-margin" name="state"  placeholder="State"></ion-input>
+          </ion-item>
+
+          <button ion-button color="light" (click)="addCameraImage()"> <ion-icon ios="ios-camera" md="md-camera"> </ion-icon> &nbsp; Choose Photo</button>
+          <img  *ngIf='main_uploaded_pic' [src]="main_uploaded_pic"/>
+          <h3>REGISTRATION PROCESS</h3>
+          <p>1. Register online on the VIR India website, by providing necessary details on the Registration Form.</p>
+          <p>2. Upload your passport size photograph (in civil dress ONLY) through the link provided.</p>
+          <p>3. Read the Terms and Conditions and agree to the same.</p>
+          <p>4. We will get back to you shortly.</p>
+
+          <h3>NO. OF ADDITIONAL VIR OWNER CARD REQUIRED</h3>
+
+          <ion-label stacked>No. Of Dependants</ion-label>
+          <ion-item>
+            <ion-label>No. Of Dependants</ion-label>
+            <ion-select [(ngModel)]="memberAccount.dependant" formControlName="dependant" name="dependant" (ionChange)='showDependent($event)'>
+              <ion-option value="0">NIL</ion-option>
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+            </ion-select>
+          </ion-item>
+          <div *ngIf="viewDependants >0">
+            <div class="dashboard">Add Dependants</div>
+            <ion-card padding class="subject-background" >
+              <ion-card-content class="no-padding">
+                <div *ngIf="viewDependants >= 1">
+                  <h4>1.</h4>
+                  <ion-card-title  class="card-title">
+                    <ion-label stacked>Full Name</ion-label>
+                    <ion-item>
+                      <ion-input type="text"  [(ngModel)]="memberAccount.full_name_1" formControlName="full_name_1" class="no-margin"  name="full_name_1"  placeholder="Full Name"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-item>
+                      <ion-label>Relationship</ion-label>
+                      <ion-select [(ngModel)]="memberAccount.relation_1" name="relation_1" formControlName="relation_1" >
+                        <ion-option value="Mother">Mother</ion-option>
+                        <ion-option value="Father">Father</ion-option>
+                        <ion-option value="Spouse">Spouse</ion-option>
+                        <ion-option value="Daughter">Daughter</ion-option>
+                        <ion-option value="Son">Son</ion-option>
+                        <ion-option value="Other">Other</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-label stacked>Mobile No</ion-label>
+                    <ion-item>
+                      <ion-label >+91</ion-label>
+                      <ion-input type="text" [(ngModel)]="memberAccount.mobile_no_1" formControlName="mobile_no_1" class="no-margin" name="mobile_no_1"  placeholder="1234567890"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Email Id</ion-label>
+                    <ion-item>
+                      <ion-input type="email"  [(ngModel)]="memberAccount.email_1" formControlName="email_1" class="no-margin"  name="email_1"  placeholder="Email Id"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>DOB</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.user_dob_1" formControlName="user_dob_1" class="no-margin" name="user_dob_1"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+                      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob_1" class="no-margin no-padding"  name="dob_1" placeholder="DOB"></ion-datetime>-->
+                    </ion-item>
+
+                    <ion-label stacked>City / Village / Town</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.city_1" formControlName="city_1" class="no-margin" name="city_1"  placeholder="City"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>State</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.state_1" formControlName="state_1" class="no-margin" name="state_1"  placeholder="State"></ion-input>
+                    </ion-item>
+
+                  </ion-card-title>
+                </div>
+
+                <div *ngIf="viewDependants >= 2">
+                  <h4>2.</h4>
+                  <ion-card-title  class="card-title">
+                    <ion-label stacked>Full Name</ion-label>
+                    <ion-item>
+                      <ion-input type="text"  [(ngModel)]="memberAccount.full_name_2" formControlName="full_name_2" class="no-margin"  name="full_name_2"  placeholder="Full Name"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-item>
+                      <ion-label>Relationship</ion-label>
+                      <ion-select [(ngModel)]="memberAccount.relation_2" name="relation_2" formControlName="relation_2" >
+                        <ion-option value="Mother">Mother</ion-option>
+                        <ion-option value="Father">Father</ion-option>
+                        <ion-option value="Spouse">Spouse</ion-option>
+                        <ion-option value="Daughter">Daughter</ion-option>
+                        <ion-option value="Son">Son</ion-option>
+                        <ion-option value="Other">Other</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-label stacked>Mobile No</ion-label>
+                    <ion-item>
+                      <ion-label >+91</ion-label>
+                      <ion-input type="text" [(ngModel)]="memberAccount.mobile_no_2" formControlName="mobile_no_2" class="no-margin" name="mobile_no_2"  placeholder="1234567890"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Email Id</ion-label>
+                    <ion-item>
+                      <ion-input type="email"  [(ngModel)]="memberAccount.email_2" formControlName="email_2" class="no-margin"  name="email_2"  placeholder="Email Id"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>DOB</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.user_dob_2" formControlName="user_dob_2" class="no-margin" name="user_dob_2"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+                      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob_2" class="no-margin no-padding"  name="dob_2" placeholder="DOB"></ion-datetime>-->
+                    </ion-item>
+
+                    <ion-label stacked>City / Village / Town</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.city_2" formControlName="city_2" class="no-margin" name="city_2"  placeholder="City"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>State</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.state_2" formControlName="state_2" class="no-margin" name="state_2"  placeholder="State"></ion-input>
+                    </ion-item>
+
+                  </ion-card-title>
+                </div>
+
+                <div *ngIf="viewDependants >= 3">
+                  <h4>3.</h4>
+                  <ion-card-title  class="card-title">
+                    <ion-label stacked>Full Name</ion-label>
+                    <ion-item>
+                      <ion-input type="text"  [(ngModel)]="memberAccount.full_name_3" formControlName="full_name_3" class="no-margin"  name="full_name_3"  placeholder="Full Name"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-item>
+                      <ion-label>Relationship</ion-label>
+                      <ion-select [(ngModel)]="memberAccount.relation_3" name="relation_3" formControlName="relation_3">
+                        <ion-option value="Mother">Mother</ion-option>
+                        <ion-option value="Father">Father</ion-option>
+                        <ion-option value="Spouse">Spouse</ion-option>
+                        <ion-option value="Daughter">Daughter</ion-option>
+                        <ion-option value="Son">Son</ion-option>
+                        <ion-option value="Other">Other</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-label stacked>Mobile No</ion-label>
+                    <ion-item>
+                      <ion-label >+91</ion-label>
+                      <ion-input type="text" [(ngModel)]="memberAccount.mobile_no_3" formControlName="mobile_no_3" class="no-margin" name="mobile_no_3"  placeholder="1234567890"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Email Id</ion-label>
+                    <ion-item>
+                      <ion-input type="email"  [(ngModel)]="memberAccount.email_3" formControlName="email_3" class="no-margin"  name="email_3"  placeholder="Email Id"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>DOB</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.user_dob_3" formControlName="user_dob_3" class="no-margin" name="user_dob_3"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+                      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob_3" class="no-margin no-padding"  name="dob_3" placeholder="DOB"></ion-datetime>-->
+                    </ion-item>
+
+                    <ion-label stacked>City / Village / Town</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.city_3" formControlName="city_3" class="no-margin" name="city_3"  placeholder="City"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>State</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.state_3" formControlName="state_3" class="no-margin" name="state_3"  placeholder="State"></ion-input>
+                    </ion-item>
+
+                  </ion-card-title>
+                </div>
+
+                <div *ngIf="viewDependants >= 4">
+                  <h4>4.</h4>
+                  <ion-card-title  class="card-title">
+                    <ion-label stacked>Full Name</ion-label>
+                    <ion-item>
+                      <ion-input type="text"  [(ngModel)]="memberAccount.full_name_4" formControlName="full_name_4" class="no-margin"  name="full_name_4"  placeholder="Full Name"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-item>
+                      <ion-label>Relationship</ion-label>
+                      <ion-select [(ngModel)]="memberAccount.relation_4" name="relation_4" formControlName="brand_name">
+                        <ion-option value="Mother">Mother</ion-option>
+                        <ion-option value="Father">Father</ion-option>
+                        <ion-option value="Spouse">Spouse</ion-option>
+                        <ion-option value="Daughter">Daughter</ion-option>
+                        <ion-option value="Son">Son</ion-option>
+                        <ion-option value="Other">Other</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-label stacked>Mobile No</ion-label>
+                    <ion-item>
+                      <ion-label >+91</ion-label>
+                      <ion-input type="text" [(ngModel)]="memberAccount.mobile_no_4" formControlName="mobile_no_4" class="no-margin" name="mobile_no_4"  placeholder="1234567890"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Email Id</ion-label>
+                    <ion-item>
+                      <ion-input type="email"  [(ngModel)]="memberAccount.email_4" formControlName="email_4" class="no-margin"  name="email_4"  placeholder="Email Id"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>DOB</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.user_dob_4" formControlName="user_dob_4" class="no-margin" name="user_dob_4"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+                      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob_4" class="no-margin no-padding"  name="dob_4" placeholder="DOB"></ion-datetime>-->
+                    </ion-item>
+
+                    <ion-label stacked>City / Village / Town</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.city_4" formControlName="city_4" class="no-margin" name="city_4"  placeholder="City"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>State</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.state_4" formControlName="state_4" class="no-margin" name="state_4"  placeholder="State"></ion-input>
+                    </ion-item>
+
+                  </ion-card-title>
+                </div>
+
+                <div *ngIf="viewDependants >= 5">
+                  <h4>5.</h4>
+                  <ion-card-title  class="card-title">
+                    <ion-label stacked>Full Name</ion-label>
+                    <ion-item>
+                      <ion-input type="text"  [(ngModel)]="memberAccount.full_name_5" formControlName="full_name_5" class="no-margin"  name="full_name_5"  placeholder="Full Name"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-item>
+                      <ion-label>Relationship</ion-label>
+                      <ion-select [(ngModel)]="memberAccount.relation_5" name="relation_5" formControlName="relation_5">
+                        <ion-option value="Mother">Mother</ion-option>
+                        <ion-option value="Father">Father</ion-option>
+                        <ion-option value="Spouse">Spouse</ion-option>
+                        <ion-option value="Daughter">Daughter</ion-option>
+                        <ion-option value="Son">Son</ion-option>
+                        <ion-option value="Other">Other</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-label stacked>Mobile No</ion-label>
+                    <ion-item>
+                      <ion-label >+91</ion-label>
+                      <ion-input type="text" [(ngModel)]="memberAccount.mobile_no_5" formControlName="mobile_no_5" class="no-margin" name="mobile_no_5"  placeholder="1234567890"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Email Id</ion-label>
+                    <ion-item>
+                      <ion-input type="email"  [(ngModel)]="memberAccount.email_5" formControlName="email_5" class="no-margin"  name="email_5"  placeholder="Email Id"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>DOB</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.user_dob_5" formControlName="user_dob_5" class="no-margin" name="user_dob_5"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+                      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob_5" class="no-margin no-padding"  name="dob_5" placeholder="DOB"></ion-datetime>-->
+                    </ion-item>
+
+                    <ion-label stacked>City / Village / Town</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.city_5" formControlName="city_5" class="no-margin" name="city_5"  placeholder="City"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>State</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.state_5" formControlName="state_5" class="no-margin" name="state_5"  placeholder="State"></ion-input>
+                    </ion-item>
+
+                  </ion-card-title>
+                </div>
+
+                <div *ngIf="viewDependants >= 6">
+                  <h4>6.</h4>
+                  <ion-card-title  class="card-title">
+                    <ion-label stacked>Full Name</ion-label>
+                    <ion-item>
+                      <ion-input type="text"  [(ngModel)]="memberAccount.full_name_6" formControlName="full_name_6" class="no-margin"  name="full_name_6"  placeholder="Full Name"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-item>
+                      <ion-label>Relationship</ion-label>
+                      <ion-select [(ngModel)]="memberAccount.relation_6" name="relation_6" formControlName="relation_6">
+                        <ion-option value="Mother">Mother</ion-option>
+                        <ion-option value="Father">Father</ion-option>
+                        <ion-option value="Spouse">Spouse</ion-option>
+                        <ion-option value="Daughter">Daughter</ion-option>
+                        <ion-option value="Son">Son</ion-option>
+                        <ion-option value="Other">Other</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-label stacked>Mobile No</ion-label>
+                    <ion-item>
+                      <ion-label >+91</ion-label>
+                      <ion-input type="text" [(ngModel)]="memberAccount.mobile_no_6" formControlName="mobile_no_6" class="no-margin" name="mobile_no_6"  placeholder="1234567890"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>Email Id</ion-label>
+                    <ion-item>
+                      <ion-input type="email"  [(ngModel)]="memberAccount.email_6" formControlName="email_6" class="no-margin"  name="email_6"  placeholder="Email Id"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>DOB</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.user_dob_6" formControlName="user_dob_6" class="no-margin" name="user_dob_6"  placeholder="DOB in format DD-MM-YYYY like 25-02-2000"></ion-input>
+                      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user_dob_6" class="no-margin no-padding"  name="dob_6" placeholder="DOB"></ion-datetime>-->
+                    </ion-item>
+
+                    <ion-label stacked>City / Village / Town</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.city_6" formControlName="city_6" class="no-margin" name="city_6"  placeholder="City"></ion-input>
+                    </ion-item>
+
+                    <ion-label stacked>State</ion-label>
+                    <ion-item>
+                      <ion-input type="text" [(ngModel)]="memberAccount.state_6" formControlName="state_6" class="no-margin" name="state_6"  placeholder="State"></ion-input>
+                    </ion-item>
+
+                  </ion-card-title>
+                </div>
+
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <ion-item>
+            <ion-label> I have read and accept all <span (click)="viewTerms('member')">Terms & Conditions</span></ion-label>
+            <ion-checkbox [(ngModel)]="memberAccount.terms" name="terms" formControlName="terms"> </ion-checkbox>
+          </ion-item>
+
+          <div padding></div>
+
+          <div>
+            <ion-grid class="no-padding">
+              <ion-row>
+                <ion-col>
+                  <button ion-button block class="padding-20" color="vir"  (click)="doSignUp('member',memberAccount)">Register</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+        </ion-list>
+      </form>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'partner'">
+      <form [formGroup]="signUpPartnerrForm">
+        <ion-list inset>
+
+          <h3>Company Details</h3>
+
+
+          <ion-label stacked>Company Brand Name</ion-label>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="partnerAccount.brand_name" class="no-margin"  name="brand_name" formControlName="brand_name" placeholder="Company Brand Name"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Company Name</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="partnerAccount.company_name" class="no-margin" name="company_name" formControlName="company_name"  placeholder="Company Name"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Owned by</ion-label>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="partnerAccount.proprietor" class="no-margin"  name="proprietor" formControlName="proprietor"  placeholder="Owned by"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>No. of outlets within Bangalore</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="partnerAccount.outlet_no" class="no-margin" name="outlet_no" formControlName="outlet_no"  placeholder="No. of outlets within Bangalore"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Head Office Address</ion-label>
+          <ion-item>
+            <ion-textarea type="text" [(ngModel)]="partnerAccount.head_address" class="no-margin"  name="head_address"  formControlName="head_address" placeholder="Head Office Address"></ion-textarea>
+          </ion-item>
+
+          <ion-label stacked>Head Office City</ion-label>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="partnerAccount.head_city" class="no-margin"  name="head_city" formControlName="head_city"  placeholder="City"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Head Office State</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="partnerAccount.head_state" class="no-margin" name="state" formControlName="head_state"  placeholder="State"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Head Office Contact Details</ion-label>
+          <ion-item>
+            <ion-label >+91</ion-label>
+            <ion-input type="text" [(ngModel)]="partnerAccount.head_mobile" class="no-margin" name="head_mobile" formControlName="head_mobile"  placeholder="Contact Number"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Store Category</ion-label>
+          <ion-item>
+            <ion-label>Store Category</ion-label>
+            <ion-select [(ngModel)]="partnerAccount.category" name="category" multiple="true"  formControlName="category">
+              <ion-option *ngFor="let cl of categoryList" value="{{cl.id}}" >{{cl.category}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-label stacked>Customer Care Number</ion-label>
+          <ion-item>
+            <ion-label >+91</ion-label>
+            <ion-input type="text" [(ngModel)]="partnerAccount.customer_care" class="no-margin" name="customer_care" formControlName="customer_care"  placeholder="Contact Number"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Type of Retail Platform</ion-label>
+          <ion-item>
+            <ion-label>Type of Retail Platform</ion-label>
+            <ion-select [(ngModel)]="partnerAccount.retail" name="retail" formControlName="retail" >
+              <ion-option value="Offline">Offline</ion-option>
+              <ion-option value="Online">Online</ion-option>
+              <ion-option value="Both">Both</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-label stacked>Company Website URL</ion-label>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="partnerAccount.website" class="no-margin"  name="website" formControlName="website"  placeholder="If any (eg: www.virindia.com)"></ion-input>
+          </ion-item>
+
+          <h3>PERSONAL DETAILS (for VIR Point of Contact)</h3>
+
+          <ion-label stacked>Contact Person</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="partnerAccount.contact_person" class="no-margin" name="contact_person" formControlName="contact_person" placeholder="Contact Person"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Designation</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="partnerAccount.designation" class="no-margin" name="designation" formControlName="designation"  placeholder="Designation"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Email id</ion-label>
+          <ion-item>
+            <ion-input type="email" required  [(ngModel)]="partnerAccount.email" class="no-margin"  name="email" formControlName="email"  placeholder="Email id"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Mobile</ion-label>
+          <ion-item>
+            <ion-label >+91</ion-label>
+            <ion-input type="text" [(ngModel)]="partnerAccount.mobile" class="no-margin" name="mobile" formControlName="mobile"  placeholder="1234567890"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>Alternate Number</ion-label>
+          <ion-item>
+            <ion-label >+91</ion-label>
+            <ion-input type="text" [(ngModel)]="partnerAccount.alt_mobile" class="no-margin" name="alt_mobile"  formControlName="alt_mobile" placeholder="1234567890"></ion-input>
+          </ion-item>
+
+          <ion-label stacked>GSTIN</ion-label>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="partnerAccount.gstinno" class="no-margin" name="gstinno" formControlName="gstinno"  placeholder="GSTIN No"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> I have read and accept all <span (click)="viewTerms('partner')">Terms & Conditions</span></ion-label>
+            <ion-checkbox [(ngModel)]="partnerAccount.terms" name="terms" formControlName="terms"> </ion-checkbox>
+          </ion-item>
+
+          <div padding></div>
+          <div>
+            <ion-grid class="no-padding">
+              <ion-row>
+                <ion-col>
+                  <button ion-button block class="padding-20" color="vir"  (click)="doSignUp('partner',partnerAccount)">Register</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+        </ion-list>
+      </form>
+    </ion-list>
+
+  </div>
+
+</ion-content>

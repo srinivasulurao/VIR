@@ -1,0 +1,95 @@
+<ion-header>
+
+  <ion-navbar color="vir">
+    <ion-title>{{offlineProduct.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div center text-center *ngFor="let prdimage of prd_image;let i = index;" [hidden]="i>0">
+    <span id="prd{{i}}" class="prdImage">
+      <img src="{{product_main_image}}" style="max-height:300px"/>
+    </span>
+  </div>
+
+  <div class="video">
+    <ion-scroll scrollX="true" direction="x">
+
+      <ion-card *ngFor="let prdimage of prd_image;let j = index"
+                (click)="selectedImage(prdimage.image)">
+        <ion-thumbnail item-start class="thumnailClass">
+          <img src="{{prdimage_base_url}}{{prdimage.image}}">
+        </ion-thumbnail>
+      </ion-card>
+
+    </ion-scroll>
+  </div>
+
+
+  <ion-list class="product_details">
+
+    <ion-item>
+      <ion-label>Product Name</ion-label>
+      :
+      <ion-label> {{offlineProduct.title}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Description</ion-label>
+      :
+      <ion-label> {{offlineProduct.description}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Price</ion-label>
+      :
+      <ion-label class="stikeClass"> {{offlineProduct.price}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>MRP</ion-label>
+      :
+      <ion-label> {{virPrice}}</ion-label>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label [innerHTML]="offlineProduct.storename"></ion-label>
+      :
+      <ion-label (click)="navigateAvailableAt()" color="vir">Available at</ion-label>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label> Valid till</ion-label>
+      :
+      <ion-label> NA</ion-label>
+    </ion-item>
+
+    <ion-card>
+      <ion-card-content class="no-padding">
+        <ion-card-title  class="card-header">
+          <h1>Specification</h1>
+        </ion-card-title>
+
+        <div class="card-content" *ngFor="let specification of offlineProduct.specification" >
+          <p [innerHTML]="specification.specification"></p>
+        </div>
+
+        <div class="card-content" *ngIf="!specificationCount">
+          <p>No Specification for this Product</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div padding></div>
+    <div center text-center>
+      <button ion-button color="vir" full block (click)="GrabNow()">I am Intrested</button>
+    </div>
+
+  </ion-list>
+
+</ion-content>

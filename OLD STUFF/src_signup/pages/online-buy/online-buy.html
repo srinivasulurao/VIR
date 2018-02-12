@@ -1,0 +1,41 @@
+<!--
+  Generated template for the OnlineBuyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="vir">
+    <ion-title>VIR to {{online_store.storename | uppercase}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+
+  <div text-center class='online-redirecting-content'>
+    <img src="./assets/img/vir_color_logo.png">
+    <ion-icon name="arrow-round-forward" color="vir"></ion-icon>
+    <img src='{{online_store.storebanner}}'>
+  </div>
+  <div>
+    <button ion-button color="vir" block [disabled]="!online_store.redirection_url" (click)="redirectOnlineStore(online_store.redirection_url)">GET REDIRECTED</button>
+  </div>
+
+  <!-- Show the offers -->
+  <div *ngFor="let of of online_store.offers">
+  <ion-card padding>
+    <h1 style='color:#245580'>{{of.title}}</h1> 
+    {{of.description}}
+    <h2 style='font-weight:bold;'>Terms & Conditions</h2> 
+    <ul>
+      <li *ngFor="let tc of of.tnc" >{{tc}}</li>  
+    </ul>
+  </ion-card>
+  </div>
+
+
+</ion-content>

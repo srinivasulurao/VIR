@@ -1,0 +1,49 @@
+page-tutorial {
+
+  .swiper-pagination-bullet{
+    background: #FFFFFF;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active{
+    background: #960000 !important;
+  }
+
+  .header-md::after{
+    background-image: none;
+  }
+
+  .toolbar-background {
+    background: transparent;
+    border-color: transparent;
+  }
+  .swiper-slide img{
+    margin-top: 50%;
+  }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .slide-zoom p{
+    position: absolute;
+    top: 65%;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+  }
+
+  .slide-title {
+    margin-top: 2.8rem;
+  }
+
+  b {
+    font-weight: 500;
+  }
+
+  .scroll-content{
+    margin: 0 !important;
+  }
+
+}

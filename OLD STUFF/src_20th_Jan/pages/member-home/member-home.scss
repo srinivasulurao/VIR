@@ -1,0 +1,40 @@
+page-member-home {
+  .scroll-zoom-wrapper {
+    white-space: nowrap;
+  }
+
+  .video ion-card {
+    width: 40% !important;
+    display: inline-block;
+  }
+  .advertisements ion-card{
+    width: 100% !important;
+  }
+  .TabSpace{
+    margin: 26px 0;
+  }
+  ion-scroll {
+    min-height: 160px;
+    height: auto;
+
+    .scroll-content {
+      padding: 0px !important;
+    }
+  }
+  ion-card-title.card-title.card-title-md {
+    font-size: 14px;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .video .card img{
+    /*max-height: 81px;*/
+  }
+  .mdTitle{
+    padding: 10px  0 0 0;
+    margin: 0;
+  }
+  .firstIndexClass{
+    margin-left: 0;
+  }
+}

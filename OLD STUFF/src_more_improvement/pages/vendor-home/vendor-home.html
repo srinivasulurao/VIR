@@ -1,0 +1,138 @@
+<!--
+  Generated template for the VendorHomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="vir" >
+    <ion-title>VIR</ion-title> 
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class='member_details' > 
+  <!-- <ion-slides pager="true" style="height:200px !important" >
+    <ion-slide *ngFor="let slide of carouselImage">
+      <img [src]="slide">
+    </ion-slide>
+  </ion-slides> -->
+
+  <ion-col col-12>
+    <h4>Scan your QR Code Here</h4>
+  </ion-col>
+
+  <ion-segment [(ngModel)]="search_vir_by" color="vir" >
+    <ion-segment-button value="scanner">By Vir Card</ion-segment-button>
+    <ion-segment-button value="virid">By Vir ID</ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="search_vir_by" >
+
+  <div padding class="scan" *ngSwitchCase="'scanner'" >
+    <button ion-button block color="secondary" class="Scan-button" (click)="scanQR()" [disabled]="loading">{{buttonText}}</button>
+  </div>
+
+  <div padding class="scan" *ngSwitchCase="'virid'">
+      <ion-input type="text" style='border:1px solid lightgrey !important' autofocus [(ngModel)]="vir_card_id" class="no-margin"  name="vir_card_id"  placeholder="Enter Vir Card Number"></ion-input><br>
+    <button ion-button block color="secondary" class="Scan-button" (click)="searchByVirId()" [disabled]="loading_vid">{{buttonText2}}</button>
+  </div>
+
+  <!-- Result to be shown here -->
+  <div *ngIf="result" class='result_playground profile-container'> 
+ 
+      <div class="list">
+          <div class="card item no-padding">
+ <div text-center text >
+      <img src="http://virindia.com/dev/assets/images/picture/{{result.picture}}" style='border:1px solid lightgrey;padding:3px;border-radius:4px'>
+</div>
+      <div class="item text-uppercase">
+          <strong>Personal Details</strong>
+      </div>
+
+      <div class="profile-desc-class" >
+      <div class="profile-desc-list">
+          <div class="profile-icon-width"><ion-icon name="person" color="vir"></ion-icon></div>
+          <div class="profile-desc-content" *ngIf="result.full_name">
+            {{result.full_name}}
+          </div>
+          <div class="profile-desc-content" *ngIf="!result.full_name">
+            Not Mentioned
+          </div>
+      </div>
+
+      <div class="profile-desc-list">
+          <div class="profile-icon-width"><ion-icon name="mail" color="vir"></ion-icon></div>
+          <div class="profile-desc-content" *ngIf="result.email">
+            {{result.email}}
+          </div>
+          <div class="profile-desc-content" *ngIf="!result.email">
+            Not Mentioned
+          </div>
+        </div>
+
+        <div class="profile-desc-list">
+          <div class="profile-icon-width"><ion-icon name="call" color="vir"></ion-icon></div>
+          <div class="profile-desc-content" *ngIf="result.mobile">
+            <span>+91 - {{result.mobile}}</span>
+          </div>
+          <div class="profile-desc-content" *ngIf="!result.mobile">
+            Not Mentioned
+          </div>
+        </div>
+
+            
+      <div class="profile-desc-list">
+          <div class="profile-icon-width"><ion-icon name="pin" color="vir"></ion-icon></div>
+          <div class="profile-desc-content" *ngIf="result.address">
+            {{result.address}}, {{result.city}}, {{result.state}}-{{result.pin}}
+          </div>
+          <div class="profile-desc-content" *ngIf="!result.address">
+            Not Mentioned
+          </div>
+        </div>
+        
+        <div class="profile-desc-list">
+          <div class="profile-icon-width"><ion-icon name="calendar" color="vir"></ion-icon></div>
+          <div class="profile-desc-content" *ngIf="result.dob">
+            {{result.dob}}
+          </div>
+          <div class="profile-desc-content" *ngIf="!result.dob"> 
+            Not Mentioned
+          </div>
+        </div>
+
+              <div class="card profile-desc-class">
+              <strong>Vir Membership Card</strong>
+    
+    
+                  <div class="profile-desc-list">
+                    <div class="profile-icon-width"><ion-icon name="card" color="vir"></ion-icon></div>
+                    <ion-card center text-center padding >
+                      <img src="http://virindia.com/dev/assets/images/csd_card/{{result.csd_card}}" /> 
+                    </ion-card>
+                  </div>
+    
+                  <div class="profile-desc-list">
+                      <div class="profile-icon-width"><ion-icon name="flower" color="vir"></ion-icon></div>
+                      <div class="profile-desc-content" *ngIf="result.csd_no">
+                        {{result.csd_no}} 
+                      </div>
+                      <div class="profile-desc-content" *ngIf="!result.csd_no"> 
+                        Not Mentioned
+                      </div>
+                  </div>
+    
+              </div>
+          </div>    
+          </div>
+          </div>
+
+  </div> <!-- Result Playground ends here-->
+
+  <ion-label color="vir" *ngIf="!result">No card result found !</ion-label>
+
+</div>
+
+</ion-content>
